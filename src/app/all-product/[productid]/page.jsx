@@ -23,7 +23,7 @@ const { data, error, isLoading } = useQuery({
 });
 
 
-console.log(data,"asasasas")
+console.log(data,"test")
 
 if (isLoading) {
   return <div>Loading...</div>; // Loading state
