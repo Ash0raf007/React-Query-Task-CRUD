@@ -3,6 +3,7 @@ import React from 'react'
 import axios from 'axios';
 import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image'; // Import Image from Next.js
+import Loader from '@/components/Loader';
 
 const Page = () => {
   const API = `https://dummyjson.com/carts`;
@@ -10,7 +11,7 @@ const Page = () => {
     const response = await axios.get(API);
     return response.data; // Return the fetched data
 
-    console.log(response.data, "scddhsdhshsdhsd")
+    console.log(response.data, "scd")
   };
 
   // Use the fetch function with React Query
@@ -20,11 +21,11 @@ const Page = () => {
   });
 
 
-  console.log(data, "asasasas")
+  console.log(data, "test...")
 
-  if (isLoading) {
-    return <div>Loading...</div>; // Loading state
-  }
+  // if (isLoading) {
+  //   return <div>Loading...</div>; // Loading state
+  // }
 
   if (error) {
     return <div>Error: {error.message}</div>; // Error handling
@@ -33,6 +34,10 @@ const Page = () => {
 
   return (
     <div>
+      { isLoading? 
+      <Loader/>
+      :
+      <>
       {data?.carts?.map((cart) => (
         <div key={cart.id}>
           {cart.products.map((product) => (
@@ -58,6 +63,10 @@ const Page = () => {
           ))}
         </div>
       ))}
+      </>
+      
+      }
+      
     </div>
   )
 }

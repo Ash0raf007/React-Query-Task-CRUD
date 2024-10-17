@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query'; // Ensure you have the right i
 import Image from 'next/image'
 import Link from 'next/link'
 import AddToCart from './AddToCart';
-
+import Loader from "./Loader"
 const API = `https://dummyjson.com/products`;
 
 const AllProduct = () => {
@@ -30,9 +30,7 @@ const AllProduct = () => {
 
   console.log(data, "asasasas")
 
-  if (isLoading) {
-    return <div>Loading...</div>; // Loading state
-  }
+
 
   if (error) {
     return <div>Error: {error.message}</div>; // Error handling
@@ -40,10 +38,10 @@ const AllProduct = () => {
 
 
   // Pagination logic
-  const totalProducts = data.products?.length;
+  const totalProducts = data?.products?.length;
   const totalPages = Math.ceil(totalProducts / productsPerPage);
   const startIndex = (currentPage - 1) * productsPerPage;
-  const currentProducts = data.products?.slice(startIndex, startIndex + productsPerPage);
+  const currentProducts = data?.products?.slice(startIndex, startIndex + productsPerPage);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -51,6 +49,12 @@ const AllProduct = () => {
 
   return (
     <div>
+{isLoading ? <Loader/>
+
+
+:(
+
+<>
       <h1 className="text-2xl font-bold mb-4">Product List</h1>
 
       <div className="flex flex-wrap  gap-4 mt-4 cursor-pointer">
@@ -96,7 +100,8 @@ const AllProduct = () => {
           </button>
         ))}
       </div>
-
+      </>
+)}
     </div>
   );
 };
