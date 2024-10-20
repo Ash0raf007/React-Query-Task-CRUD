@@ -37,7 +37,7 @@ const Page = () => {
       { isLoading? 
       <Loader/>
       :
-      <>
+      <div className='h-[500px] overflow-y-scroll mt-[10px]'>
       {data?.carts?.map((cart) => (
         <div key={cart.id}>
           {cart.products.map((product) => (
@@ -51,7 +51,7 @@ const Page = () => {
               />
               <hr className="w-full" />
 
-              <p className="text-center">{product.title}</p>
+              <p className="">{product.title}</p>
               <hr className="w-full" />
 
               <hr className="w-full mb-[20px]" />
@@ -63,7 +63,7 @@ const Page = () => {
           ))}
         </div>
       ))}
-      </>
+      </div>
       
       }
       

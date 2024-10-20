@@ -1,17 +1,15 @@
-"use client"
 import NavBar from '@/components/NavBar';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { useState } from 'react';
+import Providers from '../Provider';
 
-const queryClient = new QueryClient();
 const layout = ({children}) => {
   return (
     <div>
       <NavBar/>
-                <QueryClientProvider client={queryClient}>
+      {/* import client provider   */}
+<Providers>
+{children}
 
-      {children}
-      </QueryClientProvider>
+</Providers>
     </div>
   )
 }
